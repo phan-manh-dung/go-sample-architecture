@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
+import "go-sample-architecture/internal/routers"
 
 func main() {
-	fmt.Println("Hello, World!")
+	r := routers.NewRouter()
+	r.Run(":8080")
 }
