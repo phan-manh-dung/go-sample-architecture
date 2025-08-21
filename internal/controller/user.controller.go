@@ -2,6 +2,7 @@ package controller
 
 import (
 	"go-sample-architecture/internal/service"
+	"go-sample-architecture/pkg/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -30,9 +31,9 @@ func (uc *UserController) GetName(c *gin.Context) {
 
 func (uc *UserController) GetIDQueryUser(c *gin.Context) {
 	id := c.Query("id") // http://localhost:8080/v2/2025/id\?id=999123
-	c.JSON(http.StatusOK, gin.H{
-		"ID là:":  "" + id,
-		"users":   []string{"Hiệp", "Dũng"},
-		"message": uc.userService.GetInfoUserService(),
-	})
+	if id == "123" {
+		response.SuccessResponse(c, 20001, []string{"Dũng", "Hiệp"})
+	} else {
+		response.ErrorResponse(c, 20002, nil)
+	}
 }
